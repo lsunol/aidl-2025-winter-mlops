@@ -18,6 +18,21 @@ and install the dependencies
 ```
 pip install -r requirements.txt
 ```
+
+### In case you use GitPod
+Make sure you're within session-5 folder. Then create an environment using virtualenv:
+```
+virtualenv venv
+```
+Activate the environment
+```
+source venv/bin/activate
+```
+and install the dependencies from this other requirements file!
+```
+pip install -r requirements_py_12.txt
+```
+
 ## Running the project
 
 To run the project, run
