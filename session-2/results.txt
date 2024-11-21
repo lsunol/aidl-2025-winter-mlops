@@ -1,0 +1,2 @@
+2024-11-18 10:03
+Best hyperparameters found were:  {'hidden_size': 128, 'dropout': 0.3737795227351711, 'learning_rate': 0.0053635469452400645, 'batch_size': 32}
