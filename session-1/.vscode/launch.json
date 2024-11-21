@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: my Session 1",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": ["--n_samples", "100000", "--n_features", "10", "--n_hidden", "20", "--n_outputs", "5", "--epochs", "10", "--batch_size", "100", "--lr", "0.01"]
+        },
+        {
+            "name": "Python: my Session 1.2",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "console": "integratedTerminal",
+            "args": ["--n_samples", "100000", "--n_features", "10", "--n_hidden", "20", "--n_outputs", "5", "--epochs", "10", "--batch_size", "100", "--lr", "0.10"]
+        }
+    ]
+}
