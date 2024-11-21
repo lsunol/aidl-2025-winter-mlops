@@ -3,3 +3,8 @@ numpy
 Pillow
 torch
 ray
+scikit-learn
+scikit-image
+torchvision
+pandas
+ray[tune]

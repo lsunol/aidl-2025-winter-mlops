@@ -26,7 +26,8 @@ dataloader = DataLoader(my_dataset, batch_size=args.batch_size)
 
 my_model = MyModel(args.n_features, args.n_hidden, args.n_outputs).to(device)
 criterion = nn.MSELoss()
-optimizer = optim.SGD(my_model.parameters(), lr=args.lr)
+# optimizer = optim.SGD(my_model.parameters(), lr=args.lr)
+optimizer = optim.Adam(my_model.parameters(), lr=args.lr)
 
 loss_history = []
 

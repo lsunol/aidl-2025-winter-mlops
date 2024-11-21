@@ -1,4 +1,4 @@
-matplotlib==3.3.3
-numpy==1.19.4
-Pillow==8.0.1
+matplotlib==3.8.4
+numpy==2.1.2
+Pillow==10.4.0
 torch
