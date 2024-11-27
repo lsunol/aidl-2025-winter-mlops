@@ -15,7 +15,8 @@ def binary_accuracy(labels, outputs):
 
 def binary_accuracy_with_logits(labels, outputs):
     preds = torch.sigmoid(outputs).round()
-    acc = (preds == labels.view_as(preds)).float().detach().numpy().mean()
+    acc = (preds == labels.view_as(preds)).float().detach().cpu().numpy().mean()
+    # acc = (preds == labels.view_as(preds)).float().detach().numpy().mean()
     return acc
 
 def save_model(model, path):

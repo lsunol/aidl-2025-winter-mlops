@@ -11,24 +11,26 @@ import numpy as np
 
 
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+print("Device:", device)
 
 
 def train_single_epoch(model, train_loader, optimizer):
     model.train()
     accs, losses = [], []
-    for x, y in train_loader:
-        x = x.to(device)
-        y = y.to(device)
-        # You will need to do y = y.unsqueeze(1).float() to add an output dimension to the labels and cast to the correct type
-        y = y.unsqueeze(1).float()
+    for data, labels in train_loader:
+        data = data.to(device)
+        labels = labels.to(device)
+        # You will need to do labels = labels.unsqueeze(1).float() to add an output dimension to the labels and cast to the correct type
+        labels = labels.unsqueeze(1).float()
 
         # Set network gradients to 0.
         optimizer.zero_grad()
 
         # Forward batch of images through the network
-        output = model(x)
+        output = model(data)
+
         # Compute loss
-        loss = F.binary_cross_entropy_with_logits(output, y)
+        loss = F.binary_cross_entropy_with_logits(output, labels)
 
         # Compute backpropagation
         loss.backward()
@@ -37,7 +39,7 @@ def train_single_epoch(model, train_loader, optimizer):
         optimizer.step()
 
         # Calculate Binary Accuracy
-        acc = binary_accuracy_with_logits(output, y)
+        acc = binary_accuracy_with_logits(output, labels)
 
         losses.append(loss.item())
         accs.append(acc.item())
@@ -48,20 +50,20 @@ def eval_single_epoch(model, val_loader):
     accs, losses = [], []
     with torch.no_grad():
         model.eval()
-        for x, y in val_loader:
-            x = x.to(device)
-            y = y.to(device)
+        for data, labels in val_loader:
+            data = data.to(device)
+            labels = labels.to(device)
 
-            y = y.unsqueeze(1).float()
+            labels = labels.unsqueeze(1).float()
 
             # Forward batch of images through the network
-            output = model(x)
+            output = model(data)
             
             # Compute loss
-            loss = F.binary_cross_entropy_with_logits(output, y)
+            loss = F.binary_cross_entropy_with_logits(output, labels)
 
             # Calculate Binary Accuracy
-            acc = binary_accuracy_with_logits(output, y)
+            acc = binary_accuracy_with_logits(output, labels)
 
             losses.append(loss.item())
             accs.append(acc.item())
@@ -75,9 +77,9 @@ def train_model(config):
         transforms.ToTensor(),
         transforms.Normalize(mean=0.5, std=0.5)
     ])
-    train_dataset = ImageFolder(root = './session-3/cars-and-flowers-data/dataset/cars_vs_flowers/training_set', transform = data_transforms)
+    train_dataset = ImageFolder(root = './cars-and-flowers-data/dataset/cars_vs_flowers/training_set', transform = data_transforms)
     train_loader = DataLoader(train_dataset, batch_size=config["batch_size"], shuffle=True)
-    test_dataset = ImageFolder(root = './session-3/cars-and-flowers-data/dataset/cars_vs_flowers/test_set', transform = data_transforms)
+    test_dataset = ImageFolder(root = './cars-and-flowers-data/dataset/cars_vs_flowers/test_set', transform = data_transforms)
     test_loader = DataLoader(test_dataset, batch_size=config["batch_size"])
 
     my_model = MyModel().to(device)
