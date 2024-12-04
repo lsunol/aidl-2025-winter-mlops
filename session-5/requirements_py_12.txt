@@ -1,0 +1,10 @@
+matplotlib
+pandas
+PyYAML
+scikit-learn
+tensorboard
+torch
+torchvision
+wandb
+protobuf
+Pillow
