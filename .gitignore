@@ -161,3 +161,5 @@ cython_debug/
 session-2/mnist-chinese/
 session-3/cars-and-flowers-data/
 session-4/data/
+session-5/data/
+session-5/logs/
